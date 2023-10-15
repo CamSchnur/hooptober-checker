@@ -1,0 +1,53 @@
+.success {
+	background-color: lightgreen;
+}
+.failure {
+	background-color: pink;
+}
+.warning{
+	background-color: #FFFFE0;
+}
+body{
+	background-color: lightblue;
+}
+.resultsStd{
+	width: 500px;
+	max-width: 500px;
+	margin: auto;
+  	border: 3px solid #0f0f0f;
+	padding: 10px;		
+}
+.resultsFail{
+	width: 500px;
+	max-width: 500px;
+	margin: auto;
+  	border: 3px solid pink;
+	padding: 10px;		
+}
+.resultsWarn{
+	width: 500px;
+	max-width: 500px;
+	margin: auto;
+  	border: 3px solid #FFFFE0;
+	padding: 10px;		
+}
+.resultsSuccess{
+	width: 500px;
+	max-width: 500px;
+	margin: auto;
+  	border: 3px solid lightgreen;
+	padding: 10px;		
+}
+.pageTitle
+{
+	text-align: center;
+	width: 500px;
+	max-width: 500px;
+	margin: auto;
+  	border: 3px solid lightgreen;
+	padding: 10px;		
+}
+.subtitle
+{
+	font-size:small;
+}

@@ -1,23 +1,35 @@
 <html>
+    <head>
+        <link rel="stylesheet" href="styles.css">
+    </head>
     <title>Hooptober X Checker</title>
 
 
 
 <body>
+    <div class=".pageTitle">
+        <p>Hooptober X Validator</p>
+    </div>
+    <div id="input" class="resultsStd">
     <p>Input:</p>
     <form id="uploadForm">
-        <input type="file" id="csvUpload" accept=".csv" />
-        <br/>
+        Your Hooptober List: <input type="file" id="csvUpload" accept=".csv" /><br/>
+        <p class="subtitle">(This should be in CSV format, which can be downloaded from your letterboxd account <a href="https://letterboxd.com/settings/data/"">here</a>.)</p><br/>
+        Your Birth Year: <input type="text" id="birthYear"/>
+        <p class="subtitle">(This is optional, not stored, and only used to determine "the year you turned 10")</p><br/>
         <br/>
         <input type="submit" value="Analyze" />
-    </form>
-    <div id="results">Results:</div>
+    </form></div>
+    <br>
+    <div id="results" class="resultsStd">Results:</div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
 <script>
     const uploadForm = document.getElementById("uploadForm");
     const csvList = document.getElementById("csvUpload");
+    var anyFailures = false;
+    var anyWarns = false;
 
     uploadForm.addEventListener("submit", function (e){
         e.preventDefault();
@@ -29,18 +41,23 @@
             const reasonOutput = reason ? " (" + reason + ")" : "";
             if(passed == "Pass")
             {
-                const node = document.createTextNode(">>>>>" + name + " - Passed" + reasonOutput)
+                const node = document.createTextNode(" > " + name + " - Success!" + reasonOutput)
                 result.appendChild(node);
+                result.className = "success";
             }
             else if(passed == "Fail")
             {
-                const node = document.createTextNode(">>>>>" + name + " - Failed" + reasonOutput);
+                const node = document.createTextNode(" > " + name + " - Failed!" + reasonOutput);
                 result.appendChild(node);
+                result.className = "failure";
+                anyFailures = true;
             }
             else if(passed == "Warn")
             {
-                const node = document.createTextNode(">>>>>" + name + " - Warning" + reasonOutput);
+                const node = document.createTextNode(" > " + name + " - Warning!" + reasonOutput);
                 result.appendChild(node);
+                result.className = "warning";
+                anyWarns = true;
             }
             const element = document.getElementById("results");
             element.appendChild(result);
@@ -61,14 +78,11 @@
             const end = 2020; 
             //make an 2d array with an entry for each decade
             var decades = Array(((end - start) / 10) + 1).fill(Array(start, 0)).map((yearArray, index) => [yearArray[0] + (10 * index), ""]);
-            console.log(decades);
             //log the first movie from each decade
             for(var i = 0; i < movieListParsed.length; i++)
             {
                 const decadeStartYear = movieListParsed[i]["Year"] - (movieListParsed[i]["Year"] % 10);
-                console.log(decadeStartYear);
                 var decadeIndex = decades.findIndex(el => el[0] == decadeStartYear);
-                console.log(decadeIndex); 
                 if(decades[decadeIndex][1] == "") 
                 {
                     decades[decadeIndex][1] = movieListParsed[i]["Title"];
@@ -133,6 +147,20 @@
             //Like last year, there is a third film: Shaky Shivers.
             outputCheck("Bonus: Shaky Shivers",   "Warn", "NOT IMPLEMENTED");
 
+            //visually indicate if we have an overall success or failure
+            if(anyFailures)
+            {
+                console.log("fails");
+                document.getElementById("results").className = "resultsFail";
+            }else if(anyWarns)
+            {
+                console.log("warns");
+                document.getElementById("results").className = "resultsWarn";
+            }
+            else{
+                console.log("successes");
+                document.getElementById("results").className = "resultsSuccess";
+            }
         }
         reader.onload = function(e)
         {   
