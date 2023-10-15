@@ -60,14 +60,23 @@
             //Add better header to the top of the CSV so d3 can more easily parse it.
             //List items are in a format like:  // 1,Cursed,2005,https://boxd.it/1XiY,"some description"
             const betterFormat = "Number,Title,Year,URL,Description\n" + originalText;
-            document.write(betterFormat);
+                    
+            //Parse the data from CSV
             const csvListData = d3.csvParse(betterFormat);
 
+            //Want to ignore several rows here, 
+                //row 1 "Letterboxd list export v7",...
+                //row 2 "Date", "Name",...
+                //row 3 "2022-01-01", 
+                //row 4 (blank)
+                //row 5 (extra headers)
+            //for now, just skip first 5 rows.
+            const movieListParsed = csvListData.slice(5);
           
-            for(var i = 0; i < csvListData.length; i++)
+            for(var i = 0; i < movieListParsed.length; i++)
             {
-        
-                console.log(csvListData[i]);
+                console.log(movieListParsed[i]);
+                //document.write(movieListParsed[i]["Title"] + "<br>");
             }
             validateList();
         }
