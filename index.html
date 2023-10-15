@@ -4,13 +4,14 @@
 
 
 <body>
+    <p>Input:</p>
     <form id="uploadForm">
         <input type="file" id="csvUpload" accept=".csv" />
         <br/>
         <br/>
         <input type="submit" value="Analyze" />
     </form>
-
+    <p>Results:</p>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -22,7 +23,37 @@
         e.preventDefault();
         const input = csvList.files[0];
         const reader = new FileReader();
+        const outputCheck = function(name, passed, movieTitle="", movieUrl="")
+        {
 
+        }
+        const validateList = function()
+        {
+            //check against the rules here: https://letterboxd.com/cinemonster/list/hooptober-x-hooptober-hooptober-let-satan/
+            console.log("test");
+            console.log("test2");
+//There must be 31 films
+//6 countries
+//8 decades
+//2 post apocalyptic or natural disaster related films
+//1 film with Robert Englund
+//1 something is underground film
+//3 Satan/Devil centered films
+//1 Amicus film.
+//The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.
+//1 LGBTQ+ connected film
+//5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.
+//2 Peter Cushing films
+//1 film based on a work of or invoking the name Bram Stoker
+//1 film based on a Clive Barker story
+//1 film that was released the year that you turned 10
+//1 Mario Bava film.
+//1 film with an 'x' in the title 
+//And 1 Tobe Hooper Film (There must ALWAYS be a Hooper film)
+//***FOR THOSE THAT LIKE TO DO EXTRA WORK: WATCH The Zodiac Killer and
+// 10 Rillington Place. 
+//Like last year, there is a third film: Shaky Shivers.
+        }
         reader.onload = function(e)
         {   
             const originalText = e.target.result;
@@ -38,7 +69,7 @@
         
                 console.log(csvListData[i]);
             }
-
+            validateList();
         }
         reader.readAsText(input);
 
