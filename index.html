@@ -1,1 +1,48 @@
-<html>Hooptober X Checker</html>
+<html>
+    <title>Hooptober X Checker</title>
+
+
+
+<body>
+    <form id="uploadForm">
+        <input type="file" id="csvUpload" accept=".csv" />
+        <br/>
+        <br/>
+        <input type="submit" value="Analyze" />
+    </form>
+
+</body>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+<script>
+    const uploadForm = document.getElementById("uploadForm");
+    const csvList = document.getElementById("csvUpload");
+
+    uploadForm.addEventListener("submit", function (e){
+        e.preventDefault();
+        const input = csvList.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(e)
+        {   
+            const text = e.target.result;
+            //document.write(text);
+            const csvListData = d3.csvParse(text);
+
+        
+            for(var i = 0; i < csvListData.length; i++)
+            {
+        
+                console.log(csvListData[i]);
+            }
+
+        }
+        reader.readAsText(input);
+
+    });
+    
+   
+</script>
+</html>
+
+
