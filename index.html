@@ -57,7 +57,27 @@
             outputCheck("6 countries",  "Warn", "NOT IMPLEMENTED");
 
             //8 decades
-            outputCheck("8 decades",   "Warn", "NOT IMPLEMENTED");
+            const start = 1870; //oldest film on letterboxed is from 1874
+            const end = 2020; 
+            //make an 2d array with an entry for each decade
+            var decades = Array(((end - start) / 10) + 1).fill(Array(start, 0)).map((yearArray, index) => [yearArray[0] + (10 * index), ""]);
+            console.log(decades);
+            //log the first movie from each decade
+            for(var i = 0; i < movieListParsed.length; i++)
+            {
+                const decadeStartYear = movieListParsed[i]["Year"] - (movieListParsed[i]["Year"] % 10);
+                console.log(decadeStartYear);
+                var decadeIndex = decades.findIndex(el => el[0] == decadeStartYear);
+                console.log(decadeIndex); 
+                if(decades[decadeIndex][1] == "") 
+                {
+                    decades[decadeIndex][1] = movieListParsed[i]["Title"];
+                }             
+            }
+            //exclude empty decades and then return the list
+            var filteredDecades = decades.filter(element => element[1] != "");
+            var decadesText = filteredDecades.map(decade => decade[0] + "s: " + decade[1]).join(", ");
+            outputCheck("8 decades", (filteredDecades.length >= 8) ? "Pass" : "Fail", decadesText);
 
             //2 post apocalyptic or natural disaster related films
             outputCheck("2 post apocalyptic or natural disaster related films",   "Warn", "NOT IMPLEMENTED");
