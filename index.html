@@ -25,11 +25,14 @@
 
         reader.onload = function(e)
         {   
-            const text = e.target.result;
-            //document.write(text);
-            const csvListData = d3.csvParse(text);
+            const originalText = e.target.result;
+            //Add better header to the top of the CSV so d3 can more easily parse it.
+            //List items are in a format like:  // 1,Cursed,2005,https://boxd.it/1XiY,"some description"
+            const betterFormat = "Number,Title,Year,URL,Description\n" + originalText;
+            document.write(betterFormat);
+            const csvListData = d3.csvParse(betterFormat);
 
-        
+          
             for(var i = 0; i < csvListData.length; i++)
             {
         
