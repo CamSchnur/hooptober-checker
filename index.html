@@ -11,7 +11,7 @@
         <br/>
         <input type="submit" value="Analyze" />
     </form>
-    <p>Results:</p>
+    <div id="results">Results:</div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
@@ -23,36 +23,96 @@
         e.preventDefault();
         const input = csvList.files[0];
         const reader = new FileReader();
-        const outputCheck = function(name, passed, movieTitle="", movieUrl="")
+        const outputCheck = function(name, passed, reason="")
         {
-
+            const result = document.createElement("p");
+            const reasonOutput = reason ? " (" + reason + ")" : "";
+            if(passed == "Pass")
+            {
+                const node = document.createTextNode(">>>>>" + name + " - Passed" + reasonOutput)
+                result.appendChild(node);
+            }
+            else if(passed == "Fail")
+            {
+                const node = document.createTextNode(">>>>>" + name + " - Failed" + reasonOutput);
+                result.appendChild(node);
+            }
+            else if(passed == "Warn")
+            {
+                const node = document.createTextNode(">>>>>" + name + " - Warning" + reasonOutput);
+                result.appendChild(node);
+            }
+            const element = document.getElementById("results");
+            element.appendChild(result);
         }
-        const validateList = function()
+        const validateList = function(movieListParsed)
         {
-            //check against the rules here: https://letterboxd.com/cinemonster/list/hooptober-x-hooptober-hooptober-let-satan/
-            console.log("test");
-            console.log("test2");
-//There must be 31 films
-//6 countries
-//8 decades
-//2 post apocalyptic or natural disaster related films
-//1 film with Robert Englund
-//1 something is underground film
-//3 Satan/Devil centered films
-//1 Amicus film.
-//The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.
-//1 LGBTQ+ connected film
-//5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.
-//2 Peter Cushing films
-//1 film based on a work of or invoking the name Bram Stoker
-//1 film based on a Clive Barker story
-//1 film that was released the year that you turned 10
-//1 Mario Bava film.
-//1 film with an 'x' in the title 
-//And 1 Tobe Hooper Film (There must ALWAYS be a Hooper film)
-//***FOR THOSE THAT LIKE TO DO EXTRA WORK: WATCH The Zodiac Killer and
-// 10 Rillington Place. 
-//Like last year, there is a third film: Shaky Shivers.
+            //Validate against each individual rule as described here: 
+            //https://letterboxd.com/cinemonster/list/hooptober-x-hooptober-hooptober-let-satan/
+
+            //There must be 31 films
+            outputCheck("There must be 31 films", (movieListParsed.length >= 31) ? "Pass" : "Fail", movieListParsed.length);
+            
+            //6 countries
+            outputCheck("6 countries",  "Warn", "NOT IMPLEMENTED");
+
+            //8 decades
+            outputCheck("8 decades",   "Warn", "NOT IMPLEMENTED");
+
+            //2 post apocalyptic or natural disaster related films
+            outputCheck("2 post apocalyptic or natural disaster related films",   "Warn", "NOT IMPLEMENTED");
+
+            //1 film with Robert Englund
+            outputCheck("1 film with Robert Englund",  "Warn", "NOT IMPLEMENTED");
+
+            //1 something is underground film
+            outputCheck("1 something is underground film",  "Warn", "NOT IMPLEMENTED");
+
+            //3 Satan/Devil centered films
+            outputCheck("3 Satan/Devil centered films",  "Warn", "NOT IMPLEMENTED");
+
+            //1 Amicus film.
+            outputCheck("1 Amicus film.",  "Warn", "NOT IMPLEMENTED");
+
+            //The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.
+            outputCheck("The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.",  "Warn", "NOT IMPLEMENTED");
+
+            //1 LGBTQ+ connected film
+            outputCheck("1 LGBTQ+ connected film",  "Warn", "NOT IMPLEMENTED");
+
+            //5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.
+            outputCheck("5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.",  "Warn", "NOT IMPLEMENTED");
+
+            //2 Peter Cushing films
+            outputCheck("2 Peter Cushing films",  "Warn", "NOT IMPLEMENTED");
+
+            //1 film based on a work of or invoking the name Bram Stoker
+            outputCheck("1 film based on a work of or invoking the name Bram Stoker",   "Warn", "NOT IMPLEMENTED");
+
+            //1 film based on a Clive Barker story
+            outputCheck("1 film based on a Clive Barker story",   "Warn", "NOT IMPLEMENTED");
+
+            //1 film that was released the year that you turned 10
+            outputCheck("1 film that was released the year that you turned 10",  "Warn", "NOT IMPLEMENTED");
+
+            //1 Mario Bava film.
+            outputCheck("1 Mario Bava film.",  "Warn", "NOT IMPLEMENTED");
+
+            //1 film with an 'x' in the title 
+            outputCheck("1 film with an 'x' in the title ",   "Warn", "NOT IMPLEMENTED");
+
+            //And 1 Tobe Hooper Film (There must ALWAYS be a Hooper film)
+            outputCheck("And 1 Tobe Hooper Film (There must ALWAYS be a Hooper film)",   "Warn", "NOT IMPLEMENTED");
+
+            //***FOR THOSE THAT LIKE TO DO EXTRA WORK: WATCH The Zodiac Killer and
+            outputCheck("Bonus: The Zodiac Killer",  "Warn", "NOT IMPLEMENTED");
+
+            // 10 Rillington Place. 
+            outputCheck("Bonus: 10 Rillington Place",   "Warn", "NOT IMPLEMENTED");
+
+            //Like last year, there is a third film: Shaky Shivers.
+            outputCheck("Bonus: Shaky Shivers",   "Warn", "NOT IMPLEMENTED");
+
         }
         reader.onload = function(e)
         {   
@@ -78,7 +138,7 @@
                 console.log(movieListParsed[i]);
                 //document.write(movieListParsed[i]["Title"] + "<br>");
             }
-            validateList();
+            validateList(movieListParsed);
         }
         reader.readAsText(input);
 
