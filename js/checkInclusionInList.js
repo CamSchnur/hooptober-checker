@@ -8,6 +8,24 @@ function checkInclusionInList(movieURL, listType)
                 return true;
             }
             break;
+        case "badDraculaMovies":
+            if(getBadDraculaMovies().find(e => e == movieURL))
+            {
+                return true;
+            }
+            break;
+        case "peterCushingMovies":
+            if(getPeterCushingMovies().find(e => e == movieURL))
+            {
+                return true;
+            }
+            break;
+        case "queerHorrorMovies":
+            if(getQueerHorrorMovies().find(e => e == movieURL))
+            {
+                return true;
+            }
+            break;
     }
     return false;
 }
@@ -135,4 +153,190 @@ function getRobertEnglundMovies()
     "https://boxd.it/tTc4",
     "https://boxd.it/AgU6",
     "https://boxd.it/fMAA"];
+}
+
+function getBadDraculaMovies()
+{
+    //ripped from the losest-rated 50 films on this list: https://letterboxd.com/rak_zombie/list/all-dracula/by/rating-lowest/
+    return ["https://boxd.it/1VgG",
+    "https://boxd.it/4nxk",
+    "https://boxd.it/1VUw",
+    "https://boxd.it/1a8q",
+    "https://boxd.it/pMy",
+    "https://boxd.it/3XUM",
+    "https://boxd.it/1ShQ",
+    "https://boxd.it/1VUm",
+    "https://boxd.it/qiO",
+    "https://boxd.it/H4u",
+    "https://boxd.it/e1zI",
+    "https://boxd.it/1wkS",
+    "https://boxd.it/1o9M",
+    "https://boxd.it/1q16",
+    "https://boxd.it/2eUg",
+    "https://boxd.it/21aa",
+    "https://boxd.it/7ake",
+    "https://boxd.it/1tl4",
+    "https://boxd.it/2mc2",
+    "https://boxd.it/cq",
+    "https://boxd.it/4Uuy",
+    "https://boxd.it/yYaW",
+    "https://boxd.it/5NDA",
+    "https://boxd.it/bBCW",
+    "https://boxd.it/25wu",
+    "https://boxd.it/1oRO",
+    "https://boxd.it/33s8",
+    "https://boxd.it/3j2q",
+    "https://boxd.it/5lia",
+    "https://boxd.it/1c8s",
+    "https://boxd.it/6u7i",
+    "https://boxd.it/1Swm",
+    "https://boxd.it/3bGC",
+    "https://boxd.it/1kzc",
+    "https://boxd.it/5QOm",
+    "https://boxd.it/niG",
+    "https://boxd.it/3eZM",
+    "https://boxd.it/4mY0",
+    "https://boxd.it/1rUc",
+    "https://boxd.it/4ZLk",
+    "https://boxd.it/3I84",
+    "https://boxd.it/1k5m",
+    "https://boxd.it/6K40",
+    "https://boxd.it/25wk",
+    "https://boxd.it/22S8",
+    "https://boxd.it/1juq",
+    "https://boxd.it/11j0",
+    "https://boxd.it/40w4",
+    "https://boxd.it/1R1s",
+    "https://boxd.it/2FSm"];
+}
+
+function getPeterCushingMovies()
+{
+    //ripped from this list: https://letterboxd.com/jhoncarpi/list/peter-cushing/
+    return ["https://boxd.it/TsS",
+    "https://boxd.it/1eOg",
+    "https://boxd.it/9fW2",
+    "https://boxd.it/62xC",
+    "https://boxd.it/pH1K",
+    "https://boxd.it/5H7I",
+    "https://boxd.it/zbC",
+    "https://boxd.it/tPPw",
+    "https://boxd.it/1Btq",
+    "https://boxd.it/eJWQ",
+    "https://boxd.it/r0X6",
+    "https://boxd.it/1ziq",
+    "https://boxd.it/vDDC",
+    "https://boxd.it/1V6c",
+    "https://boxd.it/1c5o",
+    "https://boxd.it/2JQE",
+    "https://boxd.it/2Ism",
+    "https://boxd.it/4qHM",
+    "https://boxd.it/Wki",
+    "https://boxd.it/eRC",
+    "https://boxd.it/25N6",
+    "https://boxd.it/16ZK",
+    "https://boxd.it/3fSs",
+    "https://boxd.it/1STA",
+    "https://boxd.it/25FQ",
+    "https://boxd.it/1T4S",
+    "https://boxd.it/2ndU",
+    "https://boxd.it/1FUU",
+    "https://boxd.it/3OBQ",
+    "https://boxd.it/zzO",
+    "https://boxd.it/57iU",
+    "https://boxd.it/1zuQ",
+    "https://boxd.it/3RwE",
+    "https://boxd.it/72Ss",
+    "https://boxd.it/3iSU",
+    "https://boxd.it/3pyW",
+    "https://boxd.it/18uu",
+    "https://boxd.it/1Fui",
+    "https://boxd.it/49CU",
+    "https://boxd.it/25Gk",
+    "https://boxd.it/1p5c",
+    "https://boxd.it/1t80",
+    "https://boxd.it/1Ioi",
+    "https://boxd.it/1tAI",
+    "https://boxd.it/W8c",
+    "https://boxd.it/1JcM",
+    "https://boxd.it/1oRE",
+    "https://boxd.it/eFLk",
+    "https://boxd.it/bd6s",
+    "https://boxd.it/25Je",
+    "https://boxd.it/tnC",
+    "https://boxd.it/10kQ",
+    "https://boxd.it/2Fv8",
+    "https://boxd.it/133y",
+    "https://boxd.it/25NK",
+    "https://boxd.it/WvK",
+    "https://boxd.it/1eVw",
+    "https://boxd.it/1i2U",
+    "https://boxd.it/2G48",
+    "https://boxd.it/146o",
+    "https://boxd.it/1oMa",
+    "https://boxd.it/xLe",
+    "https://boxd.it/14Qc",
+    "https://boxd.it/1gfM",
+    "https://boxd.it/1HhU",
+    "https://boxd.it/12TI",
+    "https://boxd.it/1gPK",
+    "https://boxd.it/1uGM",
+    "https://boxd.it/ttGi",
+    "https://boxd.it/WPq",
+    "https://boxd.it/1n84",
+    "https://boxd.it/WRG",
+    "https://boxd.it/1c8s",
+    "https://boxd.it/3gKO",
+    "https://boxd.it/JjG",
+    "https://boxd.it/1oYg",
+    "https://boxd.it/12cO",
+    "https://boxd.it/25H8",
+    "https://boxd.it/1tOA",
+    "https://boxd.it/4Plw",
+    "https://boxd.it/cv8o",
+    "https://boxd.it/2sAE",
+    "https://boxd.it/X9A",
+    "https://boxd.it/35Pe",
+    "https://boxd.it/1tWE",
+    "https://boxd.it/17eK",
+    "https://boxd.it/6Qf4",
+    "https://boxd.it/72s",
+    "https://boxd.it/1to8",
+    "https://boxd.it/2Ce4",
+    "https://boxd.it/81yy",
+    "https://boxd.it/d24a",
+    "https://boxd.it/2Zie",
+    "https://boxd.it/2TcO",
+    "https://boxd.it/GvO",
+    "https://boxd.it/1pAu",
+    "https://boxd.it/cM0Q",
+    "https://boxd.it/14jC",
+    "https://boxd.it/3Iq8",
+    "https://boxd.it/1ZSE",
+    "https://boxd.it/1l0W",
+    "https://boxd.it/1oQm",
+    "https://boxd.it/9WGQ",
+    "https://boxd.it/1zNo",
+    "https://boxd.it/2D2I",
+    "https://boxd.it/6HZi",
+    "https://boxd.it/12lw",
+    "https://boxd.it/qkZk",
+    "https://boxd.it/14pA",
+    "https://boxd.it/2CVi",
+    "https://boxd.it/8PQ8",
+    "https://boxd.it/6Ioi",
+    "https://boxd.it/bo4M",
+    "https://boxd.it/40I0",
+    "https://boxd.it/gQDK",
+    "https://boxd.it/oYXk",
+    "https://boxd.it/pnqA"];
+}
+
+function getQueerHorrorMovies()
+{
+    //ripped from two lists: 
+    //https://letterboxd.com/alvarosouza/list/the-little-list-of-queer-horror/
+    //https://letterboxd.com/querelle/list/queer-horror-2/
+
+    return [];
 }

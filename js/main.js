@@ -91,7 +91,17 @@ uploadForm.addEventListener("submit", function (e){
         outputCheck("1 Amicus film.",  "Warn", "NOT IMPLEMENTED");
 
         //The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.
-        outputCheck("The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.",  "Warn", "NOT IMPLEMENTED");
+        var badDracMovie = "";
+        for(var i = 0; i < movieListParsed.length; i++)
+        {
+            if(checkInclusionInList(movieListParsed[i]["URL"], "badDraculaMovies") == true)
+            {
+                console.log(movieListParsed[i]["URL"]);
+                badDracMovie = movieListParsed[i]["Title"];
+                break;
+            }
+        }
+        outputCheck("The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.", badDracMovie != "" ? "Pass" : "Fail", badDracMovie);
 
         //1 LGBTQ+ connected film
         outputCheck("1 LGBTQ+ connected film",  "Warn", "NOT IMPLEMENTED");
@@ -99,8 +109,23 @@ uploadForm.addEventListener("submit", function (e){
         //5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.
         outputCheck("5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.",  "Warn", "NOT IMPLEMENTED");
 
-        //2 Peter Cushing films
-        outputCheck("2 Peter Cushing films",  "Warn", "NOT IMPLEMENTED");
+        //2 Peter Cushing films        
+        var cushingMovies = "";
+        var cushingMovieCount = 0;
+        for(var i = 0; i < movieListParsed.length; i++)
+        {
+            if(checkInclusionInList(movieListParsed[i]["URL"], "peterCushingMovies") == true)
+            {
+                console.log(movieListParsed[i]["URL"]);
+                if(cushingMovies != "")
+                {
+                    cushingMovies += ", ";
+                }
+                cushingMovies += movieListParsed[i]["Title"];
+                cushingMovieCount++;
+            }
+        }
+        outputCheck("2 Peter Cushing films",  cushingMovieCount >= 2 ? "Pass" : "Fail", cushingMovies);
 
         //1 film based on a work of or invoking the name Bram Stoker
         outputCheck("1 film based on a work of or invoking the name Bram Stoker",   "Warn", "NOT IMPLEMENTED");
@@ -134,14 +159,17 @@ uploadForm.addEventListener("submit", function (e){
         {
             console.log("fails");
             document.getElementById("results").className = "resultsFail";
+            outputCheck("OVERALL ANALYSIS:", "Fail", "Check the above errors.");
         }else if(anyWarns)
         {
             console.log("warns");
             document.getElementById("results").className = "resultsWarn";
+            outputCheck("OVERALL ANALYSIS:", "Warn", "Mostly passed but we couldn't determine everything. See the above warnings.");
         }
         else{
             console.log("successes");
             document.getElementById("results").className = "resultsSuccess";
+            outputCheck("OVERALL ANALYSIS:", "Pass", "Success! Your list looks good.");
         }
     }
     reader.onload = function(e)
