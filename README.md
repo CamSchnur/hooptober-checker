@@ -5,6 +5,8 @@
 
 This project is a validator for users' individual "Hooptober" lists to see if they adhere to the Hooptober Challenge rules, laid out <a href=https://letterboxd.com/cinemonster/list/hooptober-x-hooptober-hooptober-let-satan/>here</a>.
 
+This is not a definitive validation, and I am not affiliated with Cinemonster or Hooptober, just a fan!
+
 You can use the site live here:
 https://camschnur.github.io/hooptober-checker/
 
