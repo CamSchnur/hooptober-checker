@@ -104,7 +104,22 @@ uploadForm.addEventListener("submit", function (e){
         outputCheck("The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.", badDracMovie != "" ? "Pass" : "Fail", badDracMovie);
 
         //1 LGBTQ+ connected film
-        outputCheck("1 LGBTQ+ connected film",  "Warn", "NOT IMPLEMENTED");
+        var queerHorrorMovies = "";
+        var queerHorrorMovieCount = 0;
+        for(var i = 0; i < movieListParsed.length; i++)
+        {
+            if(checkInclusionInList(movieListParsed[i]["URL"], "queerHorrorMovies") == true)
+            {
+                console.log(movieListParsed[i]["URL"]);
+                if(queerHorrorMovies != "")
+                {
+                    queerHorrorMovies += ", ";
+                }
+                queerHorrorMovies += movieListParsed[i]["Title"];
+                queerHorrorMovieCount++;
+            }
+        }
+        outputCheck("1 LGBTQ+ connected film",  queerHorrorMovieCount >= 1 ? "Pass" : "Fail", queerHorrorMovies);
 
         //5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.
         outputCheck("5 Films from De Palma, Wes Craven, Ken Russell, Hitchcock and/or Moorhead & Benson.",  "Warn", "NOT IMPLEMENTED");
