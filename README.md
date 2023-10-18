@@ -30,4 +30,5 @@ Thanks to the following Letterboxd users:
   <li>Xplodera for <a href="https://letterboxd.com/xplodera/list/ever-danced-with-the-devil-in-the-pale-moonlight/">this list</a></li>
   <li>Mike Sean for <a href="https://letterboxd.com/monocle/list/acts-of-god-natural-disaster-films/">this list</a></li>
   <li>Caroline for <a href="https://letterboxd.com/caroline/list/post-apocalyptic/">this list</a></li>
+  <li>Abe for <a href="https://letterboxd.com/bisley/list/clive-barker/">this list</a></li>
 </ul>
