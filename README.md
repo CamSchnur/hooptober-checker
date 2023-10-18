@@ -28,4 +28,5 @@ Thanks to the following Letterboxd users:
   <li>Bruniter for <a href="https://letterboxd.com/bruniter/list/mario-bava/">this list</a></li>
   <li>Paul Anthony Nelson for <a href="https://letterboxd.com/cinemaviscera/list/bram-stokers-dracula/">this list</a></li>
   <li>Xplodera for <a href="https://letterboxd.com/xplodera/list/ever-danced-with-the-devil-in-the-pale-moonlight/">this list</a></li>
+  <li>Mike Sean for <a href="https://letterboxd.com/monocle/list/acts-of-god-natural-disaster-films/">this list</a></li>
 </ul>
