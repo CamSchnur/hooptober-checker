@@ -23,4 +23,10 @@ Thanks to the following Letterboxd users:
   <li>rak_zombie for <a href="https://letterboxd.com/rak_zombie/list/all-dracula/by/rating-lowest/">this list</a></li>
   <li>Alvaro de Souza for <a href="https://letterboxd.com/alvarosouza/list/the-little-list-of-queer-horror/">this list</a></li>
   <li>judas fonda for<a href="https://letterboxd.com/querelle/list/queer-horror-2/">this list</a></li>
+  <li>Josiah Morgan for <a href="https://letterboxd.com/list/new/from/josiahmorgan11/tobe-hooper/">this list</a></li>
+  <li>Jaume Vaquer for <a href="https://letterboxd.com/jaumevaquer/list/amicus/">this list</a></li>
+  <li>Bruniter for <a href="https://letterboxd.com/bruniter/list/mario-bava/">this list</a></li>
+  <li>Paul Anthony Nelson for <a href="https://letterboxd.com/cinemaviscera/list/bram-stokers-dracula/">this list</a></li>
+  <li>Xplodera for <a href="https://letterboxd.com/xplodera/list/ever-danced-with-the-devil-in-the-pale-moonlight/">this list</a></li>
+  <li>Mike Sean for <a href="https://letterboxd.com/monocle/list/acts-of-god-natural-disaster-films/">this list</a></li>
 </ul>
