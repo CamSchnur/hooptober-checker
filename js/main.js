@@ -138,7 +138,7 @@ uploadForm.addEventListener("submit", function (e){
         checkIt(movieListParsed, "1 film based on a work of or invoking the name Bram Stoker", "bramStokerMovies", 1);
 
         //1 film based on a Clive Barker story
-        outputCheck("1 film based on a Clive Barker story",   "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "1 film based on a Clive Barker story", "barkerMovies", 1);
 
         var moviesOneDecade = "";
         var moviesOneDecadeCount = 0;
