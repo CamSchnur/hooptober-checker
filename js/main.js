@@ -2,14 +2,25 @@ const uploadForm = document.getElementById("uploadForm");
 const csvList = document.getElementById("csvUpload");
 var anyFailures = false;
 var anyWarns = false;
+var birthYearPlusTen = -1;
+var goodBirthYear = false;
 
 uploadForm.addEventListener("submit", function (e){
     e.preventDefault();
     const input = csvList.files[0];
+    if(isNaN(birthYear.Value))
+    {
+        birthYearPlusTen = NaN;
+    }
+    else
+    {
+        birthYearPlusTen = Number(birthYear.value) + 10;
+    }
     const reader = new FileReader();
     const outputCheck = function(name, passed, reason="")
     {
         const result = document.createElement("p");
+        result.class = "outputResults";
         const reasonOutput = reason ? " (" + reason + ")" : "";
         if(passed == "Pass")
         {
@@ -36,6 +47,9 @@ uploadForm.addEventListener("submit", function (e){
     }
     const validateList = function(movieListParsed)
     {
+        //clear any existing results
+        const element = document.getElementById("results").innerHTML = "Results:";
+
         //Validate against each individual rule as described here: 
         //https://letterboxd.com/cinemonster/list/hooptober-x-hooptober-hooptober-let-satan/
 
@@ -74,7 +88,6 @@ uploadForm.addEventListener("submit", function (e){
         {
             if(checkInclusionInList(movieListParsed[i]["URL"], "robertEnglundMovies") == true)
             {
-                console.log(movieListParsed[i]["URL"]);
                 englundMovie = movieListParsed[i]["Title"];
                 break;
             }
@@ -96,7 +109,6 @@ uploadForm.addEventListener("submit", function (e){
         {
             if(checkInclusionInList(movieListParsed[i]["URL"], "badDraculaMovies") == true)
             {
-                console.log(movieListParsed[i]["URL"]);
                 badDracMovie = movieListParsed[i]["Title"];
                 break;
             }
@@ -110,7 +122,6 @@ uploadForm.addEventListener("submit", function (e){
         {
             if(checkInclusionInList(movieListParsed[i]["URL"], "queerHorrorMovies") == true)
             {
-                console.log(movieListParsed[i]["URL"]);
                 if(queerHorrorMovies != "")
                 {
                     queerHorrorMovies += ", ";
@@ -131,7 +142,6 @@ uploadForm.addEventListener("submit", function (e){
         {
             if(checkInclusionInList(movieListParsed[i]["URL"], "peterCushingMovies") == true)
             {
-                console.log(movieListParsed[i]["URL"]);
                 if(cushingMovies != "")
                 {
                     cushingMovies += ", ";
@@ -148,8 +158,29 @@ uploadForm.addEventListener("submit", function (e){
         //1 film based on a Clive Barker story
         outputCheck("1 film based on a Clive Barker story",   "Warn", "NOT IMPLEMENTED");
 
-        //1 film that was released the year that you turned 10
-        outputCheck("1 film that was released the year that you turned 10",  "Warn", "NOT IMPLEMENTED");
+        var moviesOneDecade = "";
+        var moviesOneDecadeCount = 0;
+        if(isNaN(birthYearPlusTen))
+        {
+            outputCheck("1 film that was released the year that you turned 10", "Warn", "Couldn't detect birth year.");
+        }
+        else
+        {
+            //1 film that was released the year that you turned 10
+            for(var i = 0; i < movieListParsed.length; i++)
+            {
+                if(movieListParsed[i]["Year"] == birthYearPlusTen)
+                {
+                    if(moviesOneDecade != "")
+                    {
+                        moviesOneDecade += ", ";
+                    }
+                    moviesOneDecade += movieListParsed[i]["Title"];
+                    moviesOneDecadeCount++;
+                }
+            }
+            outputCheck("1 film that was released the year that you turned 10",  moviesOneDecadeCount >= 1 ? "Pass" : "Fail", moviesOneDecade);
+        }
 
         //1 Mario Bava film.
         outputCheck("1 Mario Bava film.",  "Warn", "NOT IMPLEMENTED");
@@ -172,17 +203,15 @@ uploadForm.addEventListener("submit", function (e){
         //visually indicate if we have an overall success or failure
         if(anyFailures)
         {
-            console.log("fails");
             document.getElementById("results").className = "resultsFail";
             outputCheck("OVERALL ANALYSIS:", "Fail", "Check the above errors.");
         }else if(anyWarns)
         {
-            console.log("warns");
             document.getElementById("results").className = "resultsWarn";
             outputCheck("OVERALL ANALYSIS:", "Warn", "Mostly passed but we couldn't determine everything. See the above warnings.");
         }
-        else{
-            console.log("successes");
+        else
+        {
             document.getElementById("results").className = "resultsSuccess";
             outputCheck("OVERALL ANALYSIS:", "Pass", "Success! Your list looks good.");
         }
@@ -208,8 +237,7 @@ uploadForm.addEventListener("submit", function (e){
         
         for(var i = 0; i < movieListParsed.length; i++)
         {
-            console.log(movieListParsed[i]);
-            //document.write(movieListParsed[i]["Title"] + "<br>");
+            //console.log(movieListParsed[i]);
         }
         validateList(movieListParsed);
     }
