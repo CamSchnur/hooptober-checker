@@ -8,7 +8,8 @@ var goodBirthYear = false;
 uploadForm.addEventListener("submit", function (e){
     e.preventDefault();
     const input = csvList.files[0];
-    if(isNaN(birthYear.Value))
+    console.log(birthYear.value);
+    if(birthYear.value == "")
     {
         birthYearPlusTen = NaN;
     }
@@ -16,6 +17,7 @@ uploadForm.addEventListener("submit", function (e){
     {
         birthYearPlusTen = Number(birthYear.value) + 10;
     }
+    console.log(birthYearPlusTen);
     const reader = new FileReader();
     const outputCheck = function(name, passed, reason="")
     {
@@ -46,7 +48,7 @@ uploadForm.addEventListener("submit", function (e){
         element.appendChild(result);
     }
     
-    const checkIt = function(movieListParsed, categoryTitle, lookupName, minNum)
+    const checkIt = function(movieListParsed, categoryTitle, lookupName, minNum, isBonus)
     { 
         var matchingMovies = "";
         var matchingMovieCount = 0;
@@ -62,7 +64,14 @@ uploadForm.addEventListener("submit", function (e){
                 matchingMovieCount++;
             }
         }
-        outputCheck(categoryTitle,  matchingMovieCount >= minNum ? "Pass" : "Fail", matchingMovies);
+        if(isBonus)
+        {
+            outputCheck(categoryTitle,  matchingMovieCount >= minNum ? "Pass" : "Warn", matchingMovies);
+        }
+        else
+        {
+            outputCheck(categoryTitle,  matchingMovieCount >= minNum ? "Pass" : "Fail", matchingMovies);
+        }
     }
     const validateList = function(movieListParsed)
     {
@@ -99,7 +108,7 @@ uploadForm.addEventListener("submit", function (e){
         outputCheck("8 decades", (filteredDecades.length >= 8) ? "Pass" : "Fail", decadesText);
 
         //2 post apocalyptic or natural disaster related films
-        outputCheck("2 post apocalyptic or natural disaster related films",   "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "2 post apocalyptic or natural disaster related films",  "naturalDisasterMovies", 2);
 
         //1 film with Robert Englund
         checkIt(movieListParsed, "1 film with Robert Englund",  "robertEnglundMovies", 1);
@@ -108,10 +117,10 @@ uploadForm.addEventListener("submit", function (e){
         outputCheck("1 something is underground film",  "Warn", "NOT IMPLEMENTED");
 
         //3 Satan/Devil centered films
-        outputCheck("3 Satan/Devil centered films",  "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "3 Satan/Devil centered films",  "devilMovies", 3);
 
         //1 Amicus film.
-        outputCheck("1 Amicus film.",  "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "1 Amicus film.",  "amicusMovies", 1);
 
         //The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.
         checkIt(movieListParsed, "The worst Dracula film (by Letterboxd rating) that you haven't seen and can access.",  "badDraculaMovies", 1);
@@ -126,7 +135,7 @@ uploadForm.addEventListener("submit", function (e){
         checkIt(movieListParsed, "2 Peter Cushing films", "peterCushingMovies", 2);
 
         //1 film based on a work of or invoking the name Bram Stoker
-        outputCheck("1 film based on a work of or invoking the name Bram Stoker",   "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "1 film based on a work of or invoking the name Bram Stoker", "bramStokerMovies", 1);
 
         //1 film based on a Clive Barker story
         outputCheck("1 film based on a Clive Barker story",   "Warn", "NOT IMPLEMENTED");
@@ -156,7 +165,7 @@ uploadForm.addEventListener("submit", function (e){
         }
 
         //1 Mario Bava film.
-        outputCheck("1 Mario Bava film.",  "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "1 Mario Bava film.", "bavaMovies", 1);
 
         //1 film with an 'x' in the title 
         var xMovies = "";
@@ -176,16 +185,16 @@ uploadForm.addEventListener("submit", function (e){
         outputCheck("1 film with an 'x' in the title ", xMoviesCount >= 1 ? "Pass" : "Fail", xMovies);
 
         //And 1 Tobe Hooper Film (There must ALWAYS be a Hooper film)
-        outputCheck("And 1 Tobe Hooper Film (There must ALWAYS be a Hooper film)",   "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "And 1 Tobe Hooper Film (There must ALWAYS be a Hooper film)", "hooperMovies", 1);
 
         //***FOR THOSE THAT LIKE TO DO EXTRA WORK: WATCH The Zodiac Killer and
-        outputCheck("Bonus: The Zodiac Killer",  "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "Bonus: The Zodiac Killer", "zodiac", 1, "bonus");
 
         // 10 Rillington Place. 
-        outputCheck("Bonus: 10 Rillington Place",   "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "Bonus: 10 Rillington Place", "rillington", 1, "bonus");
 
         //Like last year, there is a third film: Shaky Shivers.
-        outputCheck("Bonus: Shaky Shivers",   "Warn", "NOT IMPLEMENTED");
+        checkIt(movieListParsed, "Bonus: Shaky Shivers", "shivers", 1, "bonus");
 
         //visually indicate if we have an overall success or failure
         if(anyFailures)

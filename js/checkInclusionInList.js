@@ -62,6 +62,25 @@ function checkInclusionInList(movieURL, listType)
                 return true;
             }
             break;
+        case "shivers":
+            if(movieURL == "https://boxd.it/wnB8")
+            {
+                return true;
+            }
+            break;
+        case "rillington":
+            if(movieURL == "https://boxd.it/1uig")
+            {
+                return true;
+            }
+            break;
+        case "zodiac":
+            if(movieURL == "https://boxd.it/5Dw")
+            {
+                return true;
+            }
+            break;
+
     }
     return false;
 }
